@@ -9,7 +9,7 @@ const sourcemaps = require('gulp-sourcemaps');
 // const autoprefixer = require('gulp-autoprefixer');
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
-const cssnano = require('cssnano');
+const cssnano = require('gulp-cssnano');
 // 引入壓縮 css 的套件
 const minimist = require('minimist');
 const gulpif = require('gulp-if');
