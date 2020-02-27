@@ -13,6 +13,8 @@ const cssnano = require('cssnano');
 // 引入壓縮 css 的套件
 const minimist = require('minimist');
 const gulpif = require('gulp-if');
+// 引入 Babel
+const babel = require('gulp-babel');
 
 // 判斷 dev 與 prod 模式
 let envOptions = {
@@ -55,4 +57,13 @@ gulp.task('scss', () => {
 
 gulp.task('sass:watch', () => {
   gulp.watch('./sass/**/*.scss', ['sass']);
+});
+
+// Babel
+gulp.task('babel', () => {
+  return gulp.src('./src/js/**/*.js')
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    .pipe(gulp.dest('./public/js'));
 });
