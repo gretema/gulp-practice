@@ -15,6 +15,8 @@ const minimist = require('minimist');
 const gulpif = require('gulp-if');
 // 引入 Babel
 const babel = require('gulp-babel');
+// 引入 concat
+const concat = require('gulp-concat');
 
 // 判斷 dev 與 prod 模式
 let envOptions = {
@@ -65,5 +67,7 @@ gulp.task('babel', () => {
     .pipe(babel({
       presets: ['@babel/env']
     }))
+    .pipe(concat('all.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/js'));
 });
