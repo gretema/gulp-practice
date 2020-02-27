@@ -1,22 +1,13 @@
 // 引入 gulp
 const gulp = require('gulp');
+// gulp-load-plugins
+const $ = require('gulp-load-plugins')();
 // 引入 SASS 編譯器
-const sass = require('gulp-sass');
-sass.compiler = require('node-sass');
-// 引入 Source Map
-const sourcemaps = require('gulp-sourcemaps');
+$.sass.compiler = require('node-sass');
 // 引入 PostCSS
-// const autoprefixer = require('gulp-autoprefixer');
 const autoprefixer = require('autoprefixer');
-const postcss = require('gulp-postcss');
-const cssnano = require('gulp-cssnano');
 // 引入壓縮 css 的套件
 const minimist = require('minimist');
-const gulpif = require('gulp-if');
-// 引入 Babel
-const babel = require('gulp-babel');
-// 引入 concat
-const concat = require('gulp-concat');
 
 // 判斷 dev 與 prod 模式
 let envOptions = {
@@ -49,11 +40,11 @@ gulp.task('scss', () => {
     autoprefixer(),
   ];
   return gulp.src('./src/sass/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(plugins))
-    .pipe(gulpif(options.env === 'prod', cssnano()))
-    .pipe(sourcemaps.write('.')) // 在括號中加入'.'
+    .pipe($.sourcemaps.init())
+    .pipe($.sass().on('error', $.sass.logError))
+    .pipe($.postcss(plugins))
+    .pipe($.if(options.env === 'prod', $.cssnano()))
+    .pipe($.sourcemaps.write('.')) // 在括號中加入'.'
     .pipe(gulp.dest('./public/css'));
 });
 
@@ -64,10 +55,10 @@ gulp.task('sass:watch', () => {
 // Babel
 gulp.task('babel', () => {
   return gulp.src('./src/js/**/*.js')
-    .pipe(babel({
+    .pipe($.babel({
       presets: ['@babel/env']
     }))
-    .pipe(concat('all.js'))
-    .pipe(sourcemaps.write('.'))
+    .pipe($.concat('all.js'))
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('./public/js'));
 });
