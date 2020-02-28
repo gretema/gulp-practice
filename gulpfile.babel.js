@@ -116,7 +116,7 @@ gulp.task('clean', () => {
 gulp.task('default', gulp.series('ejs', 'scss', 'babel', 'image', 'watch'));
 
 // build 任務佇列: 指令為 gulp bulid --env prod
-gulp.task('bulid', gulp.series('clean', 'copyHTML', 'scss', 'babel', 'image'));
+gulp.task('bulid', gulp.series('clean', 'ejs', 'scss', 'babel', 'image'));
 
 // 部署至 gh-pages
 gulp.task('deploy', () => {
