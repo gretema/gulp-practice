@@ -34,6 +34,17 @@ gulp.task('copyHTML', () => {
 })
 // 在 cmd 輸入 gulp copyHTML 指令，就會產生一個 public 目錄
 
+// EJS
+// EJS
+gulp.task('ejs', () => {
+  return gulp.src('./src/**/*.ejs')
+    .pipe($.ejs({
+      msg: "Hello Gulp!"
+    }))
+    .pipe($.rename({ extname: '.html' })) // .ejs 檔名轉換為 .html
+    .pipe(gulp.dest('./public/'))
+});
+
 // 複製 gulp-sass npm 網站上的 Basic Usage
 // 使用 Source Map
 // 但是要改進入點跟輸出點
@@ -98,7 +109,7 @@ gulp.task('clean', () => {
 });
 
 // 同步執行 Tasks
-gulp.task('default', gulp.series('copyHTML', 'scss', 'babel', 'image', 'watch'));
+gulp.task('default', gulp.series('ejs', 'scss', 'babel', 'image', 'watch'));
 
 // build 任務佇列: 指令為 gulp bulid --env prod
 gulp.task('bulid', gulp.series('clean', 'copyHTML', 'scss', 'babel', 'image'));
