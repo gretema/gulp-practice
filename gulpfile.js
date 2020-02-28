@@ -99,5 +99,5 @@ gulp.task('clean', () => {
 
 // 同步執行 Tasks
 gulp.task('default', gulp.series('copyHTML', 'scss', 'babel', 'image', 'watch'));
-// build 任務佇列
+// build 任務佇列: 指令為 gulp bulid --env prod
 gulp.task('bulid', gulp.series('clean', 'copyHTML', 'scss', 'babel', 'image'));
