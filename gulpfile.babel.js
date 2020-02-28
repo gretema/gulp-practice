@@ -1,5 +1,6 @@
 // 引入 gulp
-const gulp = require('gulp');
+// const gulp = require('gulp');
+import gulp from 'gulp';
 // gulp-load-plugins
 const $ = require('gulp-load-plugins')();
 // 引入 SASS 編譯器
@@ -122,3 +123,8 @@ gulp.task('deploy', () => {
   return gulp.src('./public/**/*')
     .pipe($.ghPages());
 });
+
+export function hello4ES6(cb) {
+  console.log('hello gulp 4.0, ES6 format')
+  cb()
+}
