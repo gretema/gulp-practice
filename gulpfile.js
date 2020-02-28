@@ -36,7 +36,7 @@ gulp.task('copyHTML', () => {
 
 // EJS
 gulp.task('ejs', () => {
-  return gulp.src('./src/**/*.ejs')
+  return gulp.src(['./src/templates/**.ejs', '!./src/templates/**/_*.ejs'])
     .pipe($.ejs({
       msg: "Hello Gulp!"
     }))
