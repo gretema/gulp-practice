@@ -91,5 +91,13 @@ gulp.task('watch', gulp.parallel('browser-sync', () => {
   gulp.watch('./src/js/**/*.js', gulp.series('babel'));
 }));
 
+// 刪除 public 再重新生成
+gulp.task('clean', () => {
+  return gulp.src('./public', { read: false })
+    .pipe($.clean());
+});
+
 // 同步執行 Tasks
 gulp.task('default', gulp.series('copyHTML', 'scss', 'babel', 'image', 'watch'));
+// build 任務佇列
+gulp.task('bulid', gulp.series('clean', 'copyHTML', 'scss', 'babel', 'image'));
