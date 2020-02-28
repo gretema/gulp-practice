@@ -59,6 +59,7 @@ gulp.task('babel', () => {
       presets: ['@babel/env']
     }))
     .pipe($.concat('all.js'))
+    .pipe($.if(options.env === 'prod', $.uglify()))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('./public/js'));
 });
