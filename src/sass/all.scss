@@ -1,11 +1,52 @@
 $color: #00cc99;
 
-.box {
-  background-color: blue;
-  width: 200px;
-  height: 200px;
-  transition: all 1s;
-  &:hover {
-    background-color: $color;
+.wrap {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: orange;
+  margin-bottom: 20px;
+  padding: 20px;
+  h1 {
+    text-align: center;
+  }
+}
+
+.bg-cover {
+  background-size: cover;
+  background-position: center center;
+}
+
+.cat-section {
+  background-color: gray;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.cat-img-1 {
+  min-width: 100px;
+  height: 100px;
+  background-image: url('../img/tran-mau-tri-tam-FbhNdD1ow2g-unsplash 2.jpg');
+}
+
+.cat-section-text {
+  padding: 10px;
+  color: #fff;
+}
+
+.cat-title {
+  margin-top: 0;
+}
+
+.footer {
+  background-color: lightblue;
+  padding: 20px;
+  margin-top: 20px;
+  p {
+    font-size: 14px;
+    text-align: center;
   }
 }

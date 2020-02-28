@@ -100,7 +100,7 @@ gulp.task('browser-sync', function () {
 
 // Server 同步更新變更：監聽 HTML、SCSS、JS，當它們有變化的時候就執行特定的 task
 gulp.task('watch', gulp.parallel('browser-sync', () => {
-  gulp.watch('./src/**/*.html', gulp.series('copyHTML'));
+  gulp.watch('./src/templates/**/*.ejs', gulp.series('ejs'));
   gulp.watch('./src/sass/**/*.scss', gulp.series('scss'));
   gulp.watch('./src/js/**/*.js', gulp.series('babel'));
 }));
