@@ -8,6 +8,8 @@ $.sass.compiler = require('node-sass');
 const autoprefixer = require('autoprefixer');
 // 引入壓縮 css 的套件
 const minimist = require('minimist');
+// 引入 Browsersync
+const browserSync = require('browser-sync').create();
 
 // 判斷 dev 與 prod 模式
 let envOptions = {
@@ -63,3 +65,31 @@ gulp.task('babel', () => {
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('./public/js'));
 });
+
+// 壓縮圖片
+gulp.task('image', () => {
+  return gulp.src('./src/img/**/*')
+    .pipe($.if(options.env === 'prod', $.image()))
+    .pipe(gulp.dest('./public/img/'));
+});
+
+// Static server
+gulp.task('browser-sync', function () {
+  browserSync.init({
+    server: {
+      baseDir: "./public", // 要指向到要模擬的伺服器資料夾，也就是 public
+      reloadDebounce: 3000 // 每次重新整理必須間格 3 秒
+    },
+    port: 8080
+  });
+});
+
+// Server 同步更新變更：監聽 HTML、SCSS、JS，當它們有變化的時候就執行特定的 task
+gulp.task('watch', gulp.parallel('browser-sync', () => {
+  gulp.watch('./src/**/*.html', gulp.series('copyHTML'));
+  gulp.watch('./src/sass/**/*.scss', gulp.series('scss'));
+  gulp.watch('./src/js/**/*.js', gulp.series('babel'));
+}));
+
+// 同步執行 Tasks
+gulp.task('default', gulp.series('copyHTML', 'scss', 'babel', 'image', 'watch'));

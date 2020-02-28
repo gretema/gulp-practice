@@ -1,9 +1,11 @@
 $color: #00cc99;
 
 .box {
-  background-color: red;
+  background-color: blue;
+  width: 200px;
+  height: 200px;
+  transition: all 1s;
   &:hover {
-    width: 10px;
     background-color: $color;
   }
 }

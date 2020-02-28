@@ -1,2 +1,11 @@
-.box{background-color:red}.box:hover{width:10px;background-color:#0c9}
+.box {
+  background-color: blue;
+  width: 200px;
+  height: 200px;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s; }
+  .box:hover {
+    background-color: #00cc99; }
+
 /*# sourceMappingURL=all.css.map */
