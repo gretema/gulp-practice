@@ -35,14 +35,15 @@ gulp.task('copyHTML', () => {
 // 在 cmd 輸入 gulp copyHTML 指令，就會產生一個 public 目錄
 
 // EJS
-// EJS
 gulp.task('ejs', () => {
   return gulp.src('./src/**/*.ejs')
     .pipe($.ejs({
       msg: "Hello Gulp!"
     }))
     .pipe($.rename({ extname: '.html' })) // .ejs 檔名轉換為 .html
+    .pipe($.if(options.env === 'prod', $.htmlmin({ collapseWhitespace: true })))
     .pipe(gulp.dest('./public/'))
+    .pipe(browserSync.stream());
 });
 
 // 複製 gulp-sass npm 網站上的 Basic Usage
@@ -58,7 +59,8 @@ gulp.task('scss', () => {
     .pipe($.postcss(plugins))
     .pipe($.if(options.env === 'prod', $.cssnano()))
     .pipe($.sourcemaps.write('.')) // 在括號中加入'.'
-    .pipe(gulp.dest('./public/css'));
+    .pipe(gulp.dest('./public/css'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('sass:watch', () => {
@@ -74,7 +76,8 @@ gulp.task('babel', () => {
     .pipe($.concat('all.js'))
     .pipe($.if(options.env === 'prod', $.uglify()))
     .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('./public/js'));
+    .pipe(gulp.dest('./public/js'))
+    .pipe(browserSync.stream());
 });
 
 // 壓縮圖片
