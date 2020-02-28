@@ -1,1 +1,0 @@
-{"version":3,"sources":["all.scss"],"names":[],"mappings":"AAEA,KACE,sBAAsB,AACtB,YAAY,AACZ,aAAa,AACb,iBAAkB,CAAA,AAJpB,WAMI,qBARW,CAAA","file":"all.css","sourcesContent":["$color: #00cc99;\n\n.box {\n  background-color: blue;\n  width: 200px;\n  height: 200px;\n  transition: all 1s;\n  &:hover {\n    background-color: $color;\n  }\n}"]}

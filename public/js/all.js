@@ -1,1 +1,0 @@
-"use strict";var a=function(){return console.log("123")},b=1234;setTimeout(function(){console.log("哈囉")},5e3),alert("abcd");
